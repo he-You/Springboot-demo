@@ -1,24 +1,14 @@
 package com.example.redisdemo.demo.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
+import com.example.redisdemo.demo.entity.User;
 
-@Service
-public class UserService {
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    RedisTemplate redisTemplate;
+import java.util.List;
 
-    @Cacheable(value = "user", key ="#id", unless = "#result==null")
-    public String getUser(int id) {
-        System.out.println("i am from userService");
-        System.out.println(stringRedisTemplate.getValueSerializer());
-        System.out.println(redisTemplate.getValueSerializer());
-        return "fee";
-    }
+/**
+ * Created by heyou on 2019/3/12 0012
+ */
+public interface UserService {
+    public List<User> getUser(String username);
 
+    public User getUser2(String username);
 }

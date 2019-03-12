@@ -1,6 +1,7 @@
 package com.example.redisdemo.demo.controller;
 
 import com.example.redisdemo.demo.UserService.UserService;
+import com.example.redisdemo.demo.UserService.UserServiceOld;
 import com.example.redisdemo.demo.entity.User;
 import com.example.redisdemo.demo.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * Created by heyou on 2019/3/11 0011
@@ -21,12 +24,15 @@ public class RedisController {
      * 序列化key-value，以及List、Hash、Set。在这里，我们直接用就行了。
      */
     @Autowired
-    UserService userService;
+    UserServiceOld userService;
+    @Autowired
+    UserService cacheService;
     @Autowired
     private StringRedisTemplate redisClient;
     @RequestMapping("setAndsave")
     @ResponseBody
     public String test(String para) throws Exception{
+
         redisClient.opsForValue().set("test", para);
         String str = redisClient.opsForValue().get("test");
         return str;
@@ -43,6 +49,18 @@ public class RedisController {
         String str = redisClient.opsForValue().get("user");
         String u1  = JsonUtils.objectToJson(user1);
         return str;
+    }
+    @RequestMapping("cache1")
+    @ResponseBody
+    public User getUser(String username){
+        System.out.println(username);
+        return cacheService.getUser2(username);
+    }
+    @RequestMapping("cache2")
+    @ResponseBody
+    public List<User> getAllUser(String username){
+        System.out.println(username);
+        return cacheService.getUser(username);
     }
 
 }

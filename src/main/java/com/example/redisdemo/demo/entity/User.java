@@ -8,6 +8,13 @@ public class User {
     private String password;
     private String username;
 
+    public User() {
+    }
+
+    public User(String username, int nextInt, PhotoInfo photoInfo) {
+    }
+
+
     public String getNickname() {
         return nickname;
     }
