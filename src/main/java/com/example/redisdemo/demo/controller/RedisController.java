@@ -1,6 +1,8 @@
 package com.example.redisdemo.demo.controller;
 
 import com.example.redisdemo.demo.UserService.UserService;
+import com.example.redisdemo.demo.entity.User;
+import com.example.redisdemo.demo.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,7 @@ public class RedisController {
         return str;
 
     }
-    /*@RequestMapping("getjson")
+    @RequestMapping("getjson")
     @ResponseBody
     public String  getJson(){
         User user1 = new User();
@@ -41,7 +43,6 @@ public class RedisController {
         String str = redisClient.opsForValue().get("user");
         String u1  = JsonUtils.objectToJson(user1);
         return str;
-    }*/
-
+    }
 
 }
