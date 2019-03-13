@@ -1,4 +1,4 @@
-package com.example.redisdemo.demo.UserService;
+package com.example.redisdemo.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

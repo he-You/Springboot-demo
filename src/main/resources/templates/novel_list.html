@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>小说列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/bootstrap/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">小说列表</div>
+    <table class="table" id="goodslist">
+        <tr>
+            <td>小说名称</td>
+            <td>小说类别</td>
+            <td>小说作者</td>
+            <td>小说简介</td>
+        <tr  th:each="novel : ${novelList}">
+            <td th:text="${novel.novelName}"></td>
+            <td th:text="${novel.novelCategory}"></td>
+            <td th:text="${novel.novelAuthor}"></td>
+            <td th:text="${novel.novelSummary}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+
+novel_list

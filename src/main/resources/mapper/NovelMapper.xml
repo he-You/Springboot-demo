@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.redisdemo.demo.dao.NovelMapper">
+    <select id="getAllInfo" resultType="com.example.redisdemo.demo.entity.Novel">
+        select
+            id "id",
+            novel_name "novelName",
+            novel_category "novelCategory",
+            novel_img "novelImg",
+            novel_summary "novelSummary",
+            novel_author "novelAuthor"
+        from t_novel
+        where 1=1
+    </select>
+</mapper>

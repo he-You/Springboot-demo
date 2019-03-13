@@ -2,11 +2,38 @@ server:
   port: 8190
 
 spring:
+  thymeleaf:
+    ##默认前缀
+    prefix: classpath:/templates/
+    ##默认后缀
+    suffix: .html
+    cache: false
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+
   datasource:
-    url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
-    password: 123456
+    password: root
+    url: jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
   cache:
     type: redis
   redis:
@@ -21,3 +48,6 @@ spring:
         max-idle: 8
         min-idle: 0
 
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.example.redisdemo.demo.entity # 注意：对应实体类的路径

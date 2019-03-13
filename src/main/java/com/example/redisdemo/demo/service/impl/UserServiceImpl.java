@@ -1,9 +1,11 @@
-package com.example.redisdemo.demo.UserService.impl;
+package com.example.redisdemo.demo.service.impl;
 
-import com.example.redisdemo.demo.UserService.UserService;
+import com.example.redisdemo.demo.dao.UserMapper;
+import com.example.redisdemo.demo.service.UserService;
 import com.example.redisdemo.demo.entity.PhotoInfo;
 import com.example.redisdemo.demo.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.Random;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserMapper userMapper;
     @Override
     @Cacheable(cacheNames = "my-redis-cache1",key = "'cache1-'.concat(#username)",unless = "#result==null||#result.get(0).photoInfo.thumbs.size()<=0")
     public List<User> getUser(String username) {
@@ -49,5 +53,20 @@ public class UserServiceImpl implements UserService {
         }else {
             return new User(username, age,photoInfo);
         }
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userMapper.findByName(name);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userMapper.getAllUsers();
     }
 }

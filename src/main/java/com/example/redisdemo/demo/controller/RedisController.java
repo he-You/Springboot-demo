@@ -1,7 +1,7 @@
 package com.example.redisdemo.demo.controller;
 
-import com.example.redisdemo.demo.UserService.UserService;
-import com.example.redisdemo.demo.UserService.UserServiceOld;
+import com.example.redisdemo.demo.service.UserService;
+import com.example.redisdemo.demo.service.UserServiceOld;
 import com.example.redisdemo.demo.entity.User;
 import com.example.redisdemo.demo.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;

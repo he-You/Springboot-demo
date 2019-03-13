@@ -48,7 +48,7 @@ public class RedisConfig extends CachingConfigurerSupport {
             }
         };
     }
-/**缓存管理器**/
+    /**缓存管理器**/
     /**通过Spring提供的RedisCacheConfiguration类，构造一个自己的redis配置类，
      从该配置类中可以设置一些初始化的缓存命名空间、及对应的默认过期时间等属性，
      再利用RedisCacheManager中的builder.build()的方式生成cacheManager：
